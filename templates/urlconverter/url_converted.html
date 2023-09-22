@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Converterd Result</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+        * {
+            font-family: 'Roboto Condensed', sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .app-container{
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #f1f1f1;
+            border: 1px solid #ddd;
+        } 
+  
+        #btn-submit {
+            padding: 5px 10px;
+            cursor: pointer;
+            background: #008000d1;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            float: right;
+        }
+        .shorten-another-url {
+            text-decoration: none;
+            color: green;
+            float: right;
+        }
+        #copy-button {
+            padding: 5px 10px;
+            cursor: pointer;
+            background: #008000d1;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+        .credit-name {
+            font-size: 14px;
+        }
+        .credit-name>.credit-link {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h3>Result bellow</h3>
+        <p id="shortened-url">{{ short_url }}</p> 
+        <button onclick="copyToClipboard()" id="copy-button">Copy URL</button>
+        <p><a href="{% url 'url-converter' %}" class="shorten-another-url">Shorten Another URL</a></p>
+        <p class="credit-name">Created by <a href="https://github.com/sothatnatha" class="credit-link">sothatna</a></p>
+
+    </div> 
+        <script>
+        function copyToClipboard() {
+            /* Get the text from the 'shortened-url' paragraph */
+            const shortenedUrl = document.getElementById('shortened-url').textContent;
+            
+            /* Create a temporary textarea element to copy the URL */
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = shortenedUrl;
+            
+            /* Append the textarea to the body and select its content */
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            /* Copy the selected text to the clipboard */
+            document.execCommand('copy');
+            
+            /* Remove the temporary textarea */
+            document.body.removeChild(tempTextArea);
+            
+            /* Provide feedback to the user (optional) */
+            const copyButton = document.getElementById('copy-button');
+            copyButton.textContent = 'Copied';
+            
+            /* Disable the button (optional) */
+            copyButton.disabled = true;
+        }
+    </script>
+</body>
+</html>

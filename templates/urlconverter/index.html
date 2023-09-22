@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Short Your URL</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+            * {
+                font-family: 'Roboto Condensed', sans-serif;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .app-container{
+                max-width: 850px;
+                margin: 0 auto;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px #f1f1f1;
+                border: 1px solid #ddd;
+            } 
+            #long_url {
+                width: 100%;
+                margin-bottom: 15px;
+                outline: none;
+                border: none;
+            }
+            #btn-submit {
+                padding: 5px 10px;
+                cursor: pointer;
+                background: #008000d1;
+                border: none;
+                color: white;
+                border-radius: 5px;
+                float: right;
+            }
+            .credit-name {
+                font-size: 14px;
+            }
+            .credit-name>a {
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app-container">
+            <form action="{% url 'url-converter' %}" method="post">
+                {% csrf_token %}
+                <input type="text" required placeholder="Enter Long URL" name="long_url" id="long_url"> <br>
+                <input type="submit" value="Generate" id="btn-submit">
+            </form>
+
+            <p class="credit-name">Created by <a href="https://github.com/sothatnatha">sothatna</a></p>
+        </div>        
+    </body>
+</html>
